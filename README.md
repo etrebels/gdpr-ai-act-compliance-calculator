@@ -29,10 +29,9 @@ const result = calculateComplianceResults(DEFAULT_COMPLIANCE_INPUTS);
 
 Framework-agnostic TypeScript, zero runtime dependencies.
 
-## Work with LangOptima
+## Built by LangOptima
 
-1. **Run the live tool** → [tools.langoptima.com/compliance-calculator](https://tools.langoptima.com/compliance-calculator).
-2. **Talk it through** → book a compliance scoping call at [calendly.com/langoptima](https://calendly.com/langoptima). Compliance in regulated AI is the frontier a knowledge layer is built for — [see how](https://www.langoptima.com/service/ontology).
+LangOptima builds AI-ready data and knowledge-graph systems for enterprises. This is one of our open-source [free tools](https://tools.langoptima.com) — [langoptima.com](https://www.langoptima.com).
 
 ## License
 
