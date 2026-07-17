@@ -1,0 +1,14 @@
+{
+  "_comment": "Illustrative placeholder pricing for the ROI calculators. These numbers are NOT a quote and do not reflect any real vendor's pricing. Copy to config.json and replace with your own solution pricing before relying on any calculator output.",
+  "solutionAnnualCost": 96000,
+  "implementationTiers": [
+    [500, 15000],
+    [1000, 20000],
+    [5000, 26000],
+    [10000, 33000],
+    [15000, 39000],
+    [20000, 45000]
+  ],
+  "implementationCostCap": 45000,
+  "ongoingCostRate": 0.1
+}
