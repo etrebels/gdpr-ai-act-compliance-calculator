@@ -272,10 +272,11 @@ export function calculateComplianceResults(
     1,
     Math.log10(Math.max(inputs.ongoingPagesPerYear, 100)) / Math.log10(500000)
   ); // 0→1 as pages go from 100 to 500K
-  const systemUnificationBonus = Math.min(
-    0.3,
-    (inputs.personalDataSystems - 2) * 0.02
-  ); // 0→0.3 as systems go from 2 to 17+
+  const systemUnificationBonus = Math.max(
+    0,
+    Math.min(0.3, (inputs.personalDataSystems - 2) * 0.02)
+  ); // 0→0.3 as systems go from 2 to 17+; floored at 0 so fewer than
+  // 2 systems can't turn the bonus into a coverage penalty
   const coverageFactor = Math.min(1, pageCoverage + systemUnificationBonus);
 
   // Actual reductions = max potential × coverage factor
