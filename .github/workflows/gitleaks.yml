@@ -4,6 +4,10 @@ on:
   push:
   pull_request:
 
+permissions:
+  contents: read
+  pull-requests: write  # gitleaks-action v2 comments on PRs when a leak is found (GITLEAKS_ENABLE_COMMENTS defaults to true)
+
 jobs:
   scan:
     runs-on: ubuntu-latest
