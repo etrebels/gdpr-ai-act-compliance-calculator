@@ -1,10 +1,27 @@
 {
   "name": "@langoptima/gdpr-ai-act-compliance-calculator",
   "version": "1.0.0",
+  "description": "Open-source model for annual data-protection and AI-compliance exposure — DSARs, data mapping, DPO cost, breach risk, and EU AI Act conformity.",
   "private": false,
   "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/etrebels/gdpr-ai-act-compliance-calculator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/etrebels/gdpr-ai-act-compliance-calculator/issues"
+  },
+  "homepage": "https://github.com/etrebels/gdpr-ai-act-compliance-calculator#readme",
   "main": "./src/index.ts",
   "types": "./src/index.ts",
+  "files": [
+    "src",
+    "NOTICE",
+    "config.example.json"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "typecheck": "tsc --noEmit",
     "test": "vitest run"
