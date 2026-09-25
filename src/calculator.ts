@@ -126,9 +126,24 @@ const KG_MAX_AI_ACT_REDUCTION = 0.55;     // 55% ceiling, automated lineage & do
 
 // ─── Main Calculation ────────────────────────────────────────
 
+// Counts cannot be negative. The UI sliders already enforce minimums, but this
+// package is published for direct use, and a negative or non-numeric count
+// reaches Math.sqrt / Math.log10 as NaN, which then spreads through every total.
+const nonNegative = (n: number): number => (Number.isFinite(n) && n > 0 ? n : 0);
+
 export function calculateComplianceResults(
-  inputs: ComplianceInputs
+  rawInputs: ComplianceInputs
 ): ComplianceResults {
+  const inputs: ComplianceInputs = {
+    ...rawInputs,
+    companySize: nonNegative(rawInputs.companySize),
+    euDataSubjects: nonNegative(rawInputs.euDataSubjects),
+    personalDataSystems: nonNegative(rawInputs.personalDataSystems),
+    dsarsPerMonth: nonNegative(rawInputs.dsarsPerMonth),
+    annualRevenue: nonNegative(rawInputs.annualRevenue),
+    ongoingPagesPerYear: nonNegative(rawInputs.ongoingPagesPerYear),
+    aiSystemsDeployed: nonNegative(rawInputs.aiSystemsDeployed),
+  };
   const multiplier = COMPLIANCE_MULTIPLIERS[inputs.industryVertical];
 
   // ── Current compliance costs (without a knowledge graph) ──

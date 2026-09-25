@@ -141,4 +141,28 @@ describe("calculateComplianceResults", () => {
     expect(Number.isInteger(currentCosts.auditAndAssessment)).toBe(true);
     expect(Number.isInteger(currentCosts.aiActCompliance)).toBe(true);
   });
+
+  it("treats negative or non-numeric counts as zero instead of returning NaN", () => {
+    // The UI sliders enforce minimums, but the package is published for direct
+    // use, and a negative count reaches Math.sqrt / Math.log10 as NaN.
+    const bad: ComplianceInputs = {
+      ...DEFAULT_COMPLIANCE_INPUTS,
+      personalDataSystems: -5,
+      companySize: -100,
+      euDataSubjects: -1,
+      dsarsPerMonth: Number.NaN,
+      aiSystemsDeployed: -2,
+    };
+    const walk = (value: unknown): number[] =>
+      typeof value === "number"
+        ? [value]
+        : value && typeof value === "object"
+          ? Object.values(value).flatMap(walk)
+          : [];
+    const numbers = walk(calculateComplianceResults(bad));
+
+    expect(numbers.length).toBeGreaterThan(0);
+    for (const n of numbers) expect(Number.isNaN(n)).toBe(false);
+    expect(calculateComplianceResults(bad).currentCosts.dataMapping).toBeGreaterThanOrEqual(0);
+  });
 });
